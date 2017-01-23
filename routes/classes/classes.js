@@ -1,10 +1,11 @@
-var sqlHelper = require('../helpers/sql');
+var endpoint = "/classes";
+var sqlHelper = require('../../helpers/sql');
 
 module.exports = {
     setup: (app, db) => {
         /* CHARACTERCLASS ENDPOINT */
-        console.log("Registering endpoint: /characterclass");
-        app.get('/characterclass', (req, res) => {
+        console.log("Registering endpoint: " + endpoint);
+        app.get(endpoint, (req, res) => {
 
             var sqlParams = sqlHelper.getSqlParams(req);
 

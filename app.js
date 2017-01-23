@@ -5,7 +5,8 @@ var sqlite3 = require('sqlite3').verbose(),
 	sqlHelper = require('./helpers/sql');
 
 
-/* GENERAL FOREACH ENDPOINT */
+/*
+// GENERAL FOREACH ENDPOINT
 var endpoints = ['feat', 'race', 'skill', 'skillvariant', 'monster', 'domain'];
 endpoints.forEach((e) => {
 
@@ -26,13 +27,13 @@ endpoints.forEach((e) => {
 	});
 
 });
-
+*/
 
 [
   'default',
-  'featrelated',
-  'characterclass',
-  'spell'
+  'classes/classes',
+  'feats/featrelatedfeats',
+  'spells/spells'
 ].map((controllerName) => {
   controller = require('./routes/' + controllerName);
   controller.setup(app, db);

@@ -1,10 +1,11 @@
-var sqlHelper = require('../helpers/sql');
+var endpoint = "/feats/related";
+var sqlHelper = require('../../helpers/sql');
 
 module.exports = {
     setup: (app, db) => {
         /* FEAT RELATED ENDPOINT */
-        console.log("Registering endpoint: /feat/related");
-        app.get('/feat/related', (req, res) => {
+        console.log("Registering endpoint: " + endpoint);
+        app.get(endpoint, (req, res) => {
             
             var sqlParams = sqlHelper.getSqlParams(req);
 
