@@ -32,7 +32,7 @@ endpoints.forEach((e) => {
 [
   'default',
   'classes/classes',
-  'feats/featrelatedfeats',
+  'feat/featrelatedfeats',
   'spells/spells'
 ].map((controllerName) => {
   controller = require('./routes/' + controllerName);
