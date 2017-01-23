@@ -10,9 +10,19 @@ module.exports = {
             var sqlParams = sqlHelper.getSqlParams(req);
 
             var result = [];
+            
+            var sql = ``;
+
+            if (sqlParams.id) {
+                sql += " WHERE guid = " + sqlParams.id + "";
+                sqlParams.id = undefined;
+            }
+            else {
+                res.json({});
+            }
 
             db.serialize(() => {
-                db.each(sqlHelper.addSqlParam(``, sqlParams), function(err, row) {
+                db.each(sqlHelper.addSqlParam(sql, sqlParams), function(err, row) {
                     result.push(row);
                 }, () => {
                     res.json(result);

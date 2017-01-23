@@ -10,9 +10,16 @@ module.exports = {
             var sqlParams = sqlHelper.getSqlParams(req);
 
             var result = [];
+            
+            var sql = `SELECT dnd_language.id AS guid, dnd_language.* FROM dnd_language`;
+
+            if (sqlParams.id) {
+                sql += " WHERE guid = " + sqlParams.id + "";
+                sqlParams.id = undefined;
+            }
 
             db.serialize(() => {
-                db.each(sqlHelper.addSqlParam(`SELECT dnd_language.id AS guid, * FROM dnd_language`, sqlParams), function(err, row) {
+                db.each(sqlHelper.addSqlParam(sql, sqlParams), function(err, row) {
                     result.push(row);
                 }, () => {
                     res.json(result);

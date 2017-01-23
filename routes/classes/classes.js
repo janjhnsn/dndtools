@@ -10,11 +10,18 @@ module.exports = {
             var sqlParams = sqlHelper.getSqlParams(req);
 
             var result = [];
+            
+            var sql = `SELECT dnd_characterclassvariant.id AS guid, * FROM dnd_characterclassvariant 
+                         LEFT OUTER JOIN dnd_characterclass ON dnd_characterclassvariant.character_class_id = dnd_characterclass.id 
+                         LEFT OUTER JOIN dnd_rulebook ON dnd_characterclassvariant.rulebook_id = dnd_rulebook.id`;
+
+            if (sqlParams.id) {
+                sql += " WHERE guid = " + sqlParams.id + "";
+                sqlParams.id = undefined;
+            }
 
             db.serialize(() => {
-                db.each(sqlHelper.addSqlParam(`SELECT dnd_characterclassvariant.id AS guid, * FROM dnd_characterclassvariant 
-                                     LEFT OUTER JOIN dnd_characterclass ON dnd_characterclassvariant.character_class_id = dnd_characterclass.id 
-                                     LEFT OUTER JOIN dnd_rulebook ON dnd_characterclassvariant.rulebook_id = dnd_rulebook.id`, sqlParams), function(err, row) {
+                db.each(sqlHelper.addSqlParam(sql, sqlParams), function(err, row) {
                     result.push(row);
                 }, () => {
                     res.json(result);
