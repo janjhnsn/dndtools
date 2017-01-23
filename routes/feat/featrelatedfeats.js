@@ -1,4 +1,4 @@
-var endpoint = "/feats/related";
+var endpoint = "/feat/related/feats";
 var sqlHelper = require('../../helpers/sql');
 
 module.exports = {
