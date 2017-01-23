@@ -12,7 +12,7 @@ module.exports = {
             var result = [];
 
             db.serialize(() => {
-                db.each(sqlHelper.addSqlParam(``, sqlParams), function(err, row) {
+                db.each(sqlHelper.addSqlParam(`SELECT dnd_language.id AS guid, * FROM dnd_language`, sqlParams), function(err, row) {
                     result.push(row);
                 }, () => {
                     res.json(result);

@@ -12,7 +12,8 @@ module.exports = {
             var result = [];
 
             db.serialize(() => {
-                db.each(sqlHelper.addSqlParam(``, sqlParams), function(err, row) {
+                db.each(sqlHelper.addSqlParam(`SELECT dnd_rulebook.id AS guid, * FROM dnd_rulebook
+                                                LEFT OUTER JOIN dnd_dndedition ON dnd_rulebook.dnd_edition_id = dnd_dndedition.id`, sqlParams), function(err, row) {
                     result.push(row);
                 }, () => {
                     res.json(result);
