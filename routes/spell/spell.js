@@ -1,4 +1,4 @@
-var endpoint = "/spells";
+var endpoint = "/spell";
 var sqlHelper = require('../../helpers/sql');
 
 module.exports = {
@@ -11,19 +11,25 @@ module.exports = {
 
             var result = [];
             
-            var sql = `SELECT dnd_spell.id AS guid, dnd_spell.name, dnd_spell.slug,
+            var sql = `SELECT dnd_spell.id AS guid, dnd_spell.*, 
             dnd_spellschool.name AS spellschool_name, dnd_spellschool.slug AS spellschool_slug,
+            dnd_spellsubschool.name AS spellsubschool_name, dnd_spellsubschool.slug AS spellsubschool_slug,
             dnd_rulebook.id AS rulebook_id, dnd_rulebook.name AS rulebook_name, dnd_rulebook.slug AS rulebook_slug, 
             dnd_dndedition.id AS edition_id, dnd_dndedition.name AS edition_name, dnd_dndedition.slug AS edition_slug
             FROM dnd_spell
             LEFT OUTER JOIN dnd_spellschool ON dnd_spell.school_id = dnd_spellschool.id
+            LEFT OUTER JOIN dnd_spellsubschool ON dnd_spell.sub_school_id = dnd_spellsubschool.id
             LEFT OUTER JOIN dnd_rulebook ON dnd_spell.rulebook_id = dnd_rulebook.id
             LEFT OUTER JOIN dnd_dndedition ON dnd_rulebook.dnd_edition_id = dnd_dndedition.id`;
 
             if (sqlParams.guid) {
-                sql += " WHERE guid = 0";
-                sqlParams.guid = undefined;
+                sql += " WHERE guid = " + sqlParams.guid + "";
             }
+            else {
+                sql += " WHERE guid = 0";
+            }
+			
+			sqlParams.guid = undefined;
 
             db.serialize(() => {
                 db.each(sqlHelper.addSqlParam(sql, sqlParams), function(err, row) {

@@ -1,4 +1,4 @@
-var endpoint = "/feat";
+var endpoint = "/class/spells";
 var sqlHelper = require('../../helpers/sql');
 
 module.exports = {
@@ -11,17 +11,12 @@ module.exports = {
 
             var result = [];
             
-            var sql = `SELECT dnd_feat.id AS guid, * FROM dnd_feat
-                        LEFT OUTER JOIN dnd_rulebook ON dnd_feat.rulebook_id = dnd_rulebook.id`;
+            var sql = ``;
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = " + sqlParams.guid + "";
+                sqlParams.guid = undefined;
             }
-            else {
-                sql += " WHERE guid = 0";
-            }
-			
-			sqlParams.guid = undefined;
 
             db.serialize(() => {
                 db.each(sqlHelper.addSqlParam(sql, sqlParams), function(err, row) {

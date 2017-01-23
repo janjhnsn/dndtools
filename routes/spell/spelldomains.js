@@ -1,4 +1,4 @@
-var endpoint = "/feat";
+var endpoint = "/spell/domains";
 var sqlHelper = require('../../helpers/sql');
 
 module.exports = {
@@ -11,8 +11,7 @@ module.exports = {
 
             var result = [];
             
-            var sql = `SELECT dnd_feat.id AS guid, * FROM dnd_feat
-                        LEFT OUTER JOIN dnd_rulebook ON dnd_feat.rulebook_id = dnd_rulebook.id`;
+            var sql = ``;
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = " + sqlParams.guid + "";

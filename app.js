@@ -31,11 +31,9 @@ endpoints.forEach((e) => {
 
 [
     'default',
-    //'classes/classes',
+    'class/class',
+    'classes/classes',
     'deities/deities',
-    //'feat/feat',
-    //'feat/featrelatedfeats',
-    //'feats/feats',
     'items/items',
     'languages/languages',
     'monsters/monsters',
@@ -44,7 +42,8 @@ endpoints.forEach((e) => {
     'rulebooks/rulebooks',
     'skills/skill',
     'skills/skills',
-    //'spells/spells'
+    'spell/spell',
+    'spells/spells'
 ].map((controllerName) => {
   controller = require('./routes/' + controllerName);
   controller.setup(app, db);

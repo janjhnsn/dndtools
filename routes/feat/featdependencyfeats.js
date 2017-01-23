@@ -15,11 +15,12 @@ module.exports = {
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = " + sqlParams.guid + "";
-                sqlParams.guid = undefined;
             }
             else {
-                res.json({});
+                sql += " WHERE guid = 0";
             }
+			
+			sqlParams.guid = undefined;
 
             db.serialize(() => {
                 db.each(sqlHelper.addSqlParam(sql, sqlParams), function(err, row) {
