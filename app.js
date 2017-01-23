@@ -1,5 +1,5 @@
 var sqlite3 = require('sqlite3').verbose(),
-	db = new sqlite3.Database('dnd.sqlite'),
+	db = new sqlite3.Database('./data/dnd.sqlite'),
 	express = require('express'),
 	app = express(),
 	sqlHelper = require('./helpers/sql');
@@ -26,10 +26,6 @@ endpoints.forEach((e) => {
 	});
 
 });
-
-//var _default = require('./routes/default.js');
-
-//_default.setup(app);
 
 
 [
