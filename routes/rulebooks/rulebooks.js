@@ -14,9 +14,9 @@ module.exports = {
             var sql = `SELECT dnd_rulebook.id AS guid, dnd_rulebook.*, dnd_dndedition.id AS edition_id, dnd_dndedition.name AS edition_name, dnd_dndedition.slug AS edition_slug FROM dnd_rulebook
             LEFT OUTER JOIN dnd_dndedition ON dnd_rulebook.dnd_edition_id = dnd_dndedition.id`;
 
-            if (sqlParams.id) {
-                sql += " WHERE guid = " + sqlParams.id + "";
-                sqlParams.id = undefined;
+            if (sqlParams.guid) {
+                sql += " WHERE guid = " + sqlParams.guid + "";
+                sqlParams.guid = undefined;
             }
 
             db.serialize(() => {

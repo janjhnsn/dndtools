@@ -14,13 +14,13 @@ module.exports = {
             var sql = `SELECT dnd_feat.id AS guid, * FROM dnd_feat
                         LEFT OUTER JOIN dnd_rulebook ON dnd_feat.rulebook_id = dnd_rulebook.id`;
 
-            if (sqlParams.id) {
-                sql += " WHERE guid = " + sqlParams.id + "";
-                sqlParams.id = undefined;
+            if (sqlParams.guid) {
+                sql += " WHERE guid = " + sqlParams.guid + "";
+                sqlParams.guid = undefined;
             }
             else {
                 sql += " WHERE guid = 0";
-                sqlParams.id = undefined;
+                sqlParams.guid = undefined;
             }
 
             db.serialize(() => {

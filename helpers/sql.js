@@ -1,7 +1,8 @@
 module.exports = {
     addSqlParam: (sql, params) => {
         var extraSql = '';
-        if (params.id) {
+
+		if (params.guid) {
             extraSql = addAndToSql(extraSql);
             extraSql += " guid = " + params.id;
         }
@@ -15,8 +16,7 @@ module.exports = {
 
     getSqlParams: (req) => {
         return {
-            id: req.query.id,
-            slug: req.query.slug,
+            guid: req.query.guid,
             limit: req.query.limit
         }
     },
