@@ -1,0 +1,110 @@
+#### MAGIC ####
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+
+- SPELLS (alle spells, eller en enkelt spell's information, eller en liste med spells fra en rulebook/school/subschool)
+SELECT dnd_spell.id AS guid, dnd_spell.rulebook_id AS rulebook, dnd_spell.school_id AS school, dnd_spell.sub_school_id AS subschool, * FROM dnd_spell
+LEFT OUTER JOIN dnd_rulebook ON dnd_spell.rulebook_id = dnd_rulebook.id
+LEFT OUTER JOIN dnd_spellschool ON dnd_spell.school_id = dnd_spellschool.id
+LEFT OUTER JOIN dnd_spellsubschool ON dnd_spell.sub_school_id = dnd_spellsubschool.id
+
+WHERE guid = ?
+WHERE rulebook = ?
+WHERE school = ?
+WHERE subschool = ?
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+-  SPELL DESCRIPTORS (når man er inde på en spell og vil se hvilken descriptor denne spell har.)
+SELECT dnd_spell_descriptors.spell_id AS guid, * FROM dnd_spell_descriptors
+LEFT OUTER JOIN dnd_spelldescriptor ON dnd_spell_descriptors.spelldescriptor_id = dnd_spelldescriptor.id
+
+WHERE guid = ?
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+
+-  DESCRIPTOR SPELLS (når man er inde på en spell descriptor side - skal man kunne se de spells som denne descriptor har til rådighed)
+SELECT dnd_spell_descriptors.spelldescriptor_id AS guid, * FROM dnd_spell_descriptors
+LEFT OUTER JOIN dnd_spelldescriptor ON dnd_spell_descriptors.spelldescriptor_id = dnd_spelldescriptor.id
+
+WHERE guid = ?
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+-  SPELL DOMAIN (når man er inde på en spell og vil se hvilket domain denne spell tilhører.)
+SELECT dnd_spelldomainlevel.spell_id AS guid, * FROM dnd_spelldomainlevel
+LEFT OUTER JOIN dnd_spell ON dnd_spelldomainlevel.spell_id = dnd_spell.id
+LEFT OUTER JOIN dnd_domain ON dnd_spelldomainlevel.domain_id = dnd_domain.id
+
+WHERE guid = ?
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+-  DOMAIN SPELLS (når man er inde på en domain side - skal man kunne se de spells som denne domain har til rådighed)
+SELECT dnd_spelldomainlevel.domain_id AS guid, * FROM dnd_spelldomainlevel
+LEFT OUTER JOIN dnd_spell ON dnd_spelldomainlevel.spell_id = dnd_spell.id
+LEFT OUTER JOIN dnd_domain ON dnd_spelldomainlevel.domain_id = dnd_domain.id
+
+WHERE guid = ?
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- CLASS SPELLS (når man er inde på en class side - skal man kunne se hvilke spells denne class har til rådighed)
+SELECT dnd_spellclasslevel.character_class_id AS guid, * FROM dnd_spellclasslevel
+LEFT OUTER JOIN dnd_characterclass ON dnd_spellclasslevel.character_class_id = dnd_characterclass.id
+LEFT OUTER JOIN dnd_spell ON dnd_spellclasslevel.spell_id = dnd_spell.id
+
+WHERE guid = ?
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- SPELL CLASSES (når man er inde på en spell - skal man kunne se hvilke classes der har adgang til denne spell)
+SELECT dnd_spellclasslevel.spell_id AS guid, * FROM dnd_spellclasslevel
+LEFT OUTER JOIN dnd_characterclass ON dnd_spellclasslevel.character_class_id = dnd_characterclass.id
+LEFT OUTER JOIN dnd_spell ON dnd_spellclasslevel.spell_id = dnd_spell.id
+
+WHERE guid = ?
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- SPELL SCHOOLS (liste over spell schools)
+SELECT dnd_spellschool.id AS guid, * FROM dnd_spellschool
+
+WHERE guid = ?
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- SPELL SUBSCHOOLS (liste over spell sub-schools)
+SELECT dnd_spellsubschool.id AS guid, * FROM dnd_spellsubschool
+
+WHERE guid = ?
+
+
+
+--------------------------------------------------------------------------------------------------------

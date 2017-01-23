@@ -1,0 +1,88 @@
+#### FEATS ####
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+
+- FEATS: (alle feats, eller en enkelt feat's information, eller en liste med feats fra en rulebook)
+SELECT dnd_feat.id AS guid, dnd_feat.rulebook_id AS rulebook, * FROM dnd_feat
+LEFT OUTER JOIN dnd_rulebook ON dnd_feat.rulebook_id = dnd_rulebook.id
+
+WHERE guid = 922
+WHERE rulebook = ?
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- SKILL PREREQUISITE (liste af skills som den feat man er inde på skal have før man kan tage denne feat)
+SELECT dnd_featrequiresskill.feat_id AS guid, * FROM dnd_featrequiresskill
+LEFT OUTER JOIN dnd_skill ON dnd_skill.id = dnd_featrequiresskill.skill_id
+
+WHERE guid = 111
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- FEAT PREREQUISITE (liste af feats som den feat man er inde på skal have før man kan tage denne feat)
+SELECT dnd_featrequiresfeat.source_feat_id AS guid, * FROM dnd_featrequiresfeat
+LEFT OUTER JOIN dnd_feat ON dnd_feat.id = dnd_featrequiresfeat.required_feat_id
+LEFT OUTER JOIN dnd_rulebook ON dnd_feat.rulebook_id = dnd_rulebook.id
+
+WHERE guid = 922
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- FEAT REQUIRED FOR (liste af feats som den feat man er inde på giver adgang til)
+SELECT dnd_featrequiresfeat.required_feat_id AS guid, * FROM dnd_featrequiresfeat
+LEFT OUTER JOIN dnd_feat ON dnd_feat.id = dnd_featrequiresfeat.source_feat_id
+LEFT OUTER JOIN dnd_rulebook ON dnd_feat.rulebook_id = dnd_rulebook.id
+
+WHERE guid = 922
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- FEATS RELATED (liste af relaterede feats ud fra den feat man kigger fra)
+SELECT * FROM dnd_feat
+LEFT OUTER JOIN dnd_rulebook ON dnd_feat.rulebook_id = dnd_rulebook.id
+
+WHERE dnd_feat.slug = (SELECT dnd_feat.slug FROM dnd_feat LEFT OUTER JOIN dnd_rulebook ON dnd_feat.rulebook_id = dnd_rulebook.id WHERE dnd_feat.id = 11)
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- FEAT CATEGORY
+SELECT dnd_feat_feat_categories.feat_id AS guid, * FROM dnd_feat_feat_categories
+LEFT OUTER JOIN dnd_featcategory ON dnd_featcategory.id = dnd_feat_feat_categories.featcategory_id
+LEFT OUTER JOIN dnd_feat ON dnd_feat.id = dnd_feat_feat_categories.feat_id
+
+WHERE guid = 18
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- FEAT CATEGORY FEATS
+SELECT dnd_feat_feat_categories.featcategory_id AS guid, * FROM dnd_feat_feat_categories
+LEFT OUTER JOIN dnd_featcategory ON dnd_featcategory.id = dnd_feat_feat_categories.featcategory_id
+LEFT OUTER JOIN dnd_feat ON dnd_feat.id = dnd_feat_feat_categories.feat_id
+
+WHERE guid = 18
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+- FEAT SPECIAL REQUIREMENTS
