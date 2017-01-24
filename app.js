@@ -4,12 +4,6 @@ var sqlite3 = require('sqlite3').verbose(),
 	app = express(),
 	sqlHelper = require('./helpers/sql');
 
-
-
-
-
-
-
 [
     'default',
     'class/class',
@@ -23,12 +17,12 @@ var sqlite3 = require('sqlite3').verbose(),
     'feat/feat',
     'feat/featcategories',
     'feat/featdependencyfeats',
-    //'feat/featprerequisitefeats',
-    //'feat/featprerequisiteskills',
+    'feat/featprerequisitefeats',
+    'feat/featprerequisiteskills',
     'feat/featrelatedfeats',
-    //'feat/featrequirementsspecial',
-    //'feats/featcategories',
-    //'feats/featcategoryfeats',
+    'feat/featrequirementsspecial',
+    'feats/featcategories',
+    'feats/featcategoryfeats',
     'feats/feats',
     'items/items',
     'languages/languages',

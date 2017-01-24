@@ -11,7 +11,8 @@ module.exports = {
 
             var result = [];
             
-            var sql = ``;
+            var sql = `SELECT dnd_featrequiresskill.feat_id AS guid, dnd_skill.* FROM dnd_featrequiresskill
+            LEFT OUTER JOIN dnd_skill ON dnd_skill.id = dnd_featrequiresskill.skill_id`;
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = " + sqlParams.guid + "";

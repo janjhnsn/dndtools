@@ -11,7 +11,7 @@ module.exports = {
 
             var result = [];
             
-            var sql = ``;
+            var sql = `SELECT * FROM dnd_featcategory`;
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = 0";
