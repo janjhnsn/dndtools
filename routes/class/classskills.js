@@ -1,4 +1,4 @@
-var endpoint = "/feat/categories;
+var endpoint = "/class/skills";
 
 
 module.exports = {
@@ -11,16 +11,15 @@ module.exports = {
 
             var result = [];
             
-            var sql = ``;
+            var sql = `SELECT dnd_characterclassvariant_class_skills.characterclassvariant_id AS guid, * FROM dnd_characterclassvariant_class_skills
+            LEFT OUTER JOIN dnd_skill ON dnd_skill.id = dnd_characterclassvariant_class_skills.skill_id`;
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = " + sqlParams.guid + "";
-            }
-            else {
-                sql += " WHERE guid = 0";
-            }
-			
-			sqlParams.guid = undefined;
+                sqlParams.guid = undefined;
+            } else {
+				sql += " WHERE guid = 0";
+			}
 
             db.serialize(() => {
                 db.each(sqlHelper.addSqlParam(sql, sqlParams), function(err, row) {

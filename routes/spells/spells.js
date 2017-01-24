@@ -1,8 +1,8 @@
 var endpoint = "/spells";
-var sqlHelper = require('../../helpers/sql');
+
 
 module.exports = {
-    setup: (app, db) => {
+    setup: (app, db, sqlHelper) => {
         /* SPELL ENDPOINT */
         console.log("Registering endpoint: " + endpoint);
         app.get(endpoint, (req, res) => {
@@ -12,7 +12,7 @@ module.exports = {
             var result = [];
             
             var sql = `SELECT dnd_spell.id AS guid, dnd_spell.name, dnd_spell.slug,
-            dnd_spellschool.name AS spellschool_name, dnd_spellschool.slug AS spellschool_slug,
+            dnd_spellschool.id AS spellschool_id, dnd_spellschool.name AS spellschool_name, dnd_spellschool.slug AS spellschool_slug,
             dnd_rulebook.id AS rulebook_id, dnd_rulebook.name AS rulebook_name, dnd_rulebook.slug AS rulebook_slug, 
             dnd_dndedition.id AS edition_id, dnd_dndedition.name AS edition_name, dnd_dndedition.slug AS edition_slug
             FROM dnd_spell

@@ -1,4 +1,4 @@
-var endpoint = "/feat/categories;
+var endpoint = "/class/dependency/skills";
 
 
 module.exports = {
@@ -15,12 +15,10 @@ module.exports = {
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = " + sqlParams.guid + "";
-            }
-            else {
-                sql += " WHERE guid = 0";
-            }
-			
-			sqlParams.guid = undefined;
+                sqlParams.guid = undefined;
+            } else {
+				sql += " WHERE guid = 0";
+			}
 
             db.serialize(() => {
                 db.each(sqlHelper.addSqlParam(sql, sqlParams), function(err, row) {

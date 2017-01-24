@@ -1,8 +1,8 @@
 var endpoint = "/feat/related/feats";
-var sqlHelper = require('../../helpers/sql');
+
 
 module.exports = {
-    setup: (app, db) => {
+    setup: (app, db, sqlHelper) => {
         /* FEAT RELATED ENDPOINT */
         console.log("Registering endpoint: " + endpoint);
         app.get(endpoint, (req, res) => {

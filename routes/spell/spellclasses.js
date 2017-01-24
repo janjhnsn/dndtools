@@ -1,8 +1,8 @@
 var endpoint = "/spell/classes";
-var sqlHelper = require('../../helpers/sql');
+
 
 module.exports = {
-    setup: (app, db) => {
+    setup: (app, db, sqlHelper) => {
         /* SPELL ENDPOINT */
         console.log("Registering endpoint: " + endpoint);
         app.get(endpoint, (req, res) => {

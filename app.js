@@ -4,34 +4,11 @@ var sqlite3 = require('sqlite3').verbose(),
 	app = express(),
 	sqlHelper = require('./helpers/sql');
 
-
-/*
-// GENERAL FOREACH ENDPOINT
-var endpoints = ['feat', 'race', 'skill', 'skillvariant', 'monster', 'domain'];
-endpoints.forEach((e) => {
-
-	console.log("Registering endpoint: /" + e);
-	app.get('/' + e, (req, res) => {
-		
-		var sqlParams = sqlHelper.getSqlParams(req);
-
-		var result = [];
-		
-		db.serialize(() => {
-			db.each(sqlHelper.addSqlParam("SELECT id AS guid, * FROM dnd_" + e, sqlParams), (err, row) => {
-				result.push(row);
-			}, () => {
-				res.json(result);
-			});
-		});
-	});
-
-});
-*/
-
 [
     'default',
     'class/class',
+    'class/classskills',
+    'class/classspells',
     'classes/classes',
     'deities/deities',
     'items/items',
@@ -46,7 +23,7 @@ endpoints.forEach((e) => {
     'spells/spells'
 ].map((controllerName) => {
   controller = require('./routes/' + controllerName);
-  controller.setup(app, db);
+  controller.setup(app, db, sqlHelper);
 });
 
 app.listen(3000);

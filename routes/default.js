@@ -14,6 +14,8 @@ module.exports = {
 			html += "<p><span>?limit=X (x = number) limited amount of items</span></p>";
 			html += "<p>&nbsp;</p>";
 			html += "<p><a href='/class'>/class</a> <i>(needs guid)</i></p>";
+			html += "<p><a href='/class/skills'>/class/skills</a> <i>(needs guid)</i></p>";
+			html += "<p><a href='/class/spells'>/class/spells</a> <i>(needs guid)</i></p>";
 			html += "<p><a href='/classes'>/classes</a></p>";
 			//html += "<p><a href='/'></a></p>";
 			html += "<p><a href='/deities'>/deities</a></p>";
