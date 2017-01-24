@@ -33,12 +33,12 @@ var sqlite3 = require('sqlite3').verbose(),
     'skills/skill',
     'skills/skills',
     'spell/spell',
-    //'spell/spellclasses',
-    //'spell/spelldescriptors',
-    //'spell/spelldomains',
+    'spell/spellclasses',
+    'spell/spelldescriptors',
+    'spell/spelldomains',
     //'spells/spelldescriptors',
-    //'spells/spelldomains',
-    'spells/spells'
+    'spells/spelldomains',
+    'spells/spells',
     //'spells/spellschools',
     //'spells/spellsubschools'
 ].map((controllerName) => {
