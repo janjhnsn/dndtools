@@ -14,7 +14,7 @@ module.exports = {
             var sql = ``;
 
             if (sqlParams.guid) {
-                sql += " WHERE guid = " + sqlParams.guid + "";
+                sql += " WHERE guid = 0";
                 sqlParams.guid = undefined;
             }
 

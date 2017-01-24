@@ -1,4 +1,4 @@
-var endpoint = "/feat/categories;
+var endpoint = "/feat/categories";
 
 
 module.exports = {
@@ -11,7 +11,8 @@ module.exports = {
 
             var result = [];
             
-            var sql = ``;
+            var sql = `SELECT dnd_feat_feat_categories.feat_id AS guid, dnd_featcategory.* FROM dnd_feat_feat_categories
+            LEFT OUTER JOIN dnd_featcategory ON dnd_feat_feat_categories.featcategory_id = dnd_featcategory.id`;
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = " + sqlParams.guid + "";
