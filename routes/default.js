@@ -41,6 +41,7 @@ module.exports = {
 			html += "<p><a href='/spells'>/spells</a></p>";
 			//html += "<p><a href='/spells/'>/spells/</a></p>";
             //html += "<p><a href='/spells/'>/spells/</a></p>";
+            html += "<p>&nbsp;</p>";
 			//html += "";
 			html += "</body>";
 			html += "</html>";
