@@ -11,7 +11,7 @@ module.exports = {
 
             var result = [];
             
-            var sql = `SELECT * FROM dnd_spell`;
+            var sql = `SELECT dnd_spellschool.id AS guid, * FROM dnd_spellschool`;
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = 0";

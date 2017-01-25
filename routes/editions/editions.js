@@ -1,4 +1,4 @@
-var endpoint = "/spells/domains";
+var endpoint = "/editions";
 
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
 
             var result = [];
             
-            var sql = `SELECT dnd_domain.id AS guid, * FROM dnd_domain`;
+            var sql = `SELECT * FROM dnd_dndedition`;
 
             if (sqlParams.guid) {
                 sql += " WHERE guid = 0";

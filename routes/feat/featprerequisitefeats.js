@@ -1,4 +1,4 @@
-var endpoint = "/feat/prerequisites/feats";
+var endpoint = "/feat/prerequisite/feats";
 
 
 module.exports = {

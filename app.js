@@ -32,15 +32,20 @@ var sqlite3 = require('sqlite3').verbose(),
     'rulebooks/rulebooks',
     'skills/skill',
     'skills/skills',
+    'skills/skilltricks',
     'spell/spell',
     'spell/spellclasses',
     'spell/spelldescriptors',
     'spell/spelldomains',
-    //'spells/spelldescriptors',
-    'spells/spelldomains',
     'spells/spells',
-    //'spells/spellschools',
-    //'spells/spellsubschools'
+    'spells/spelldescriptors',
+    'spells/spelldescriptorspells',
+    'spells/spelldomains',
+    'spells/spelldomainspells',
+    'spells/spellschools',
+    'spells/spellschoolspells',
+    'spells/spellsubschools',
+    'spells/spellsubschoolspells'
 ].map((controllerName) => {
   controller = require('./routes/' + controllerName);
   controller.setup(app, db, sqlHelper);
