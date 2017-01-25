@@ -51,4 +51,4 @@ var sqlite3 = require('sqlite3').verbose(),
   controller.setup(app, db, sqlHelper);
 });
 
-app.listen(3000);
+app.listen(80);
